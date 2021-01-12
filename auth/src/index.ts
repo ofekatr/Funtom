@@ -1,14 +1,13 @@
-import express from 'express';
 import { json } from 'body-parser';
+import express from 'express';
+import { appRouter } from './routes';
 
 const app = express();
 app.use(json());
 
-const port = 3000;
+app.use(appRouter);
 
-app.get("/api/users/currentUser", (_, res) => {
-    res.send("Hello world.");
-})
+const port = 3000;
 
 app.listen(port, () => {
     console.log(`Listening on port ${port}.`);
