@@ -1,4 +1,7 @@
-import BaseError from "../models/errors/BaseError";
+import { errorDataMap } from "src/constants/errors";
+import { ErrorData } from "src/types/errors/ErrorData";
+import ErrorEnum from "src/types/errors/ErrorEnum";
+import BaseError from "../types/errors/BaseError";
 
 const errorHandlingMiddleware = (err, _, res, __) => {
     if (err instanceof BaseError) {
@@ -6,7 +9,8 @@ const errorHandlingMiddleware = (err, _, res, __) => {
         res.status(code).send(message);
         return;
     }
-    res.status(500).send("An error has occured on the server.");
+    const { code, message }: ErrorData = errorDataMap.get(ErrorEnum.GENERIC_ERROR)!;
+    res.status(code).send(message);
 }
 
 export { errorHandlingMiddleware };
