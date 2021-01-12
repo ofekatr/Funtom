@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc",
     "start": "ts-node-dev src/index",
-    "dev": "ts-node dist/index"
+    "dev": "ts-node src/index"
   },
   "keywords": [],
   "author": "",
